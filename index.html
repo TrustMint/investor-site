@@ -44,11 +44,13 @@
             overflow-x: hidden;
             font-size: 16px; /* Базовый размер шрифта */
         }
+        body.nav-open {
+            overflow: hidden;
+        }
 
         /* --- Глобальные элементы --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; } 
         section { 
-            /* Адаптивные вертикальные отступы */
             padding: clamp(60px, 10vw, 120px) 0; 
             position: relative; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
@@ -60,21 +62,20 @@
             text-align: center; 
         }
         
-        /* Плавная типографика */
         h1 {
-            font-size: clamp(2.5rem, 5.5vw + 1rem, 4.375rem); /* 40px -> 70px */
+            font-size: clamp(2.5rem, 5.5vw + 1rem, 4.375rem);
             margin-bottom: 28px; 
             font-weight: 800; 
         }
         
         h2 { 
-            font-size: clamp(2.25rem, 5vw + 1rem, 3.25rem); /* 36px -> 52px */
+            font-size: clamp(2.25rem, 5vw + 1rem, 3.25rem);
             margin-bottom: 24px; 
             letter-spacing: -0.5px;
         }
 
         p.subtitle { 
-            font-size: clamp(1rem, 2vw + 0.5rem, 1.1875rem); /* 16px -> 19px */
+            font-size: clamp(1rem, 2vw + 0.5rem, 1.1875rem);
             color: var(--text-secondary); 
             max-width: 800px; 
             margin: 0 auto 80px; 
@@ -88,9 +89,9 @@
 
         .btn {
             display: inline-block; padding: 14px 38px; font-family: var(--font-main); font-weight: 600; 
-            font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.0625rem); /* 14.4px -> 17px */
-            border-radius: 8px; text-decoration: none; transition: all 0.4s ease;
-            cursor: pointer; border: none; text-align: center;
+            font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.0625rem);
+            border-radius: 50px; text-decoration: none; transition: all 0.4s ease;
+            cursor: pointer; border: none; text-align: center; white-space: nowrap;
         }
         .btn-primary { 
             background: linear-gradient(45deg, var(--accent-gold), #FFEB99); 
@@ -98,7 +99,6 @@
             box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
         }
         .btn-primary:hover { 
-            background-color: #fff; 
             transform: translateY(-5px) scale(1.02); 
             box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4); 
         }
@@ -116,34 +116,79 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- Хедер --- */
+        /* --- ИЗМЕНЕНИЕ: Хедер --- */
         .header {
-            position: sticky; 
-            top: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 6, 8, 0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed; 
+            top: 15px;
+            width: 95%;
+            max-width: 1200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(5, 6, 8, 0.85); 
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
         }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 85px; } 
         .logo { font-family: var(--font-headings); font-size: 26px; font-weight: 800; text-decoration: none; color: var(--text-primary); }
         .logo .fa-atom { color: var(--accent-gold); margin-right: 8px; }
+        
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .nav-links { list-style: none; display: flex; gap: 40px; }
-        .nav-links a { color: var(--text-secondary); font-size: 16px; font-weight: 500; text-decoration: none; transition: color 0.3s; padding: 5px 0; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background-color: var(--accent-gold); transition: width 0.3s ease; }
+        .nav-links a { 
+            color: var(--text-secondary); 
+            font-size: 16px; 
+            font-weight: 500; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+            padding: 5px 0; 
+            position: relative; 
+        }
+        .nav-links a::after { 
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: -5px; 
+            width: 0; 
+            height: 2px; 
+            background-color: var(--accent-gold); 
+            transition: width 0.3s ease; 
+        }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { width: 100%; }
         
-        .nav-toggle {
+        /* ИЗМЕНЕНИЕ: Мобильное меню */
+        .mobile-menu-toggle {
+            display: none;
+            z-index: 1002;
             background: none;
             border: none;
-            color: var(--text-primary);
-            font-size: 24px;
             cursor: pointer;
-            display: none; /* Скрыт на десктопе */
-            z-index: 1001;
+            padding: 10px;
         }
+        .mobile-menu-toggle .icon-menu, .mobile-menu-toggle .icon-close {
+            font-size: 28px;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu-toggle .icon-close { display: none; }
+
 
         /* --- Главный экран --- */
-        .hero { min-height: 90vh; display: flex; align-items: center; border-bottom: none; padding-top: 60px; padding-bottom: 60px; }
+        .hero { 
+            min-height: 90vh; 
+            display: flex; 
+            align-items: center; 
+            border-bottom: none; 
+            padding-top: 130px; /* ИЗМЕНЕНИЕ: Отступ для плавающего хедера */
+            padding-bottom: 60px; 
+        }
         .hero-content { width: 100%; text-align: center; }
         .hero-content h1 {
             background: linear-gradient(45deg, #E1E1E6, var(--accent-gold));
@@ -153,7 +198,7 @@
         }
         .hero-content p { 
             max-width: 800px; margin: 0 auto 50px; 
-            font-size: clamp(1.05rem, 2.5vw + 0.5rem, 1.25rem); /* 16.8px -> 20px */
+            font-size: clamp(1.05rem, 2.5vw + 0.5rem, 1.25rem);
             color: var(--text-secondary); 
         }
         .hero-buttons { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
@@ -194,7 +239,6 @@
         /* --- Бизнес-модель --- */
         .model-grid { 
             display: grid; 
-            /* Используем minmax для адаптивных колонок */
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
             gap: 30px; 
         }
@@ -286,13 +330,13 @@
         .cta-card {
             background-color: var(--bg-card); 
             border: 1px solid var(--accent-gold); 
-            padding: clamp(30px, 8vw, 80px); /* Адаптивный внутренний отступ */
+            padding: clamp(30px, 8vw, 80px);
             border-radius: 15px; 
             max-width: 1000px; margin: 0 auto;
             box-shadow: 0 0 50px rgba(255, 215, 0, 0.1); 
         }
         .cta-card h2 { 
-            font-size: clamp(1.8rem, 4vw + 1rem, 2.625rem); /* 28.8px -> 42px */
+            font-size: clamp(1.8rem, 4vw + 1rem, 2.625rem);
             color: var(--text-primary); 
         }
         .cta-card p { max-width: 650px; margin: 0 auto 50px; font-size: 18px; }
@@ -316,59 +360,55 @@
 
         /* --- Адаптивность --- */
         
-        /* Планшеты и небольшие десктопы (до 992px) */
         @media (max-width: 992px) {
-            /* НАЧАЛО: ИСПРАВЛЕНИЕ МОБИЛЬНОГО МЕНЮ */
-            .nav-toggle {
-                display: block; /* Показываем гамбургер */
-            }
-            .nav-toggle .fa-times { display: none; }
-            .nav-toggle.active .fa-bars { display: none; }
-            .nav-toggle.active .fa-times { display: block; }
-            .header .btn-secondary {
-                display: none; /* Скрываем кнопку в хедере на мобильных */
+            .mobile-menu-toggle {
+                display: block;
             }
             .nav-links {
                 position: fixed;
                 top: 0;
-                left: 0;
-                width: 100vw;
+                right: 0; /* Changed from left to right */
+                width: 60%;
+                max-width: 300px;
                 height: 100vh;
                 background: var(--bg-dark);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 30px;
+                gap: 40px;
+                z-index: 1001;
                 transform: translateX(100%);
-                transition: transform 0.4s ease-in-out;
-                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.5s;
             }
             .nav-links.active {
                 transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
             }
             .nav-links a {
-                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                font-size: 18px;
             }
-            /* КОНЕЦ: ИСПРАВЛЕНИЕ МОБИЛЬНОГО МЕНЮ */
+            body.nav-open .mobile-menu-toggle .icon-menu { display: none; }
+            body.nav-open .mobile-menu-toggle .icon-close { display: block; }
+            .header-buttons .btn-secondary { display: none; }
 
             .opportunity-content { grid-template-columns: 1fr; gap: 40px; }
             .abstract-chart { margin-top: 40px; }
             .team-grid { grid-template-columns: 1fr; max-width: 500px; }
             
-            /* Исправленная верстка Roadmap для планшетов */
             .roadmap .timeline::before { left: 20px; transform: none; }
-            .roadmap .phase { 
+            .roadmap .phase, .roadmap .left, .roadmap .right { 
                 width: 100%; 
                 left: 0; 
                 padding-left: 70px; 
                 padding-right: 20px; 
                 margin-bottom: 40px;
             }
-            .roadmap .right { left: 0; }
             .roadmap .phase::after { left: 10px; }
         }
 
-        /* Мобильные устройства (до 768px) */
         @media (max-width: 768px) {
             body { line-height: 1.6; }
             p.subtitle { margin-bottom: 60px; }
@@ -380,7 +420,6 @@
             .cta-card { padding: 40px 25px; }
         }
 
-        /* Маленькие мобильные устройства (до 480px) */
         @media (max-width: 480px) {
             .container { padding: 0 15px; }
             .hero-buttons { 
@@ -405,17 +444,22 @@
     <header class="header">
         <nav class="navbar container">
             <a href="https://synapseairwa.com" class="logo"><i class="fas fa-atom"></i> SynapseAI</a>
-            <ul class="nav-links">
+            
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#opportunity">Возможность</a></li>
                 <li><a href="#business-model">Модель</a></li>
                 <li><a href="#roadmap">Карта</a></li>
                 <li><a href="#team">Команда</a></li>
-                <li><a href="https://app.synapseairwa.com" target="_blank" style="color: var(--accent-gold); font-weight: 700;">DApp (Demo)</a></li>
             </ul>
-            <a href="#cta" class="btn btn-secondary">Стать партнером</a>
-            <button class="nav-toggle" aria-label="Открыть/Закрыть меню">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
+            
+            <div class="header-buttons">
+                 <a href="#cta" class="btn btn-secondary">Стать партнером</a>
+                 <a href="https://app.synapseairwa.com" target="_blank" class="btn btn-primary">DApp (Demo)</a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars icon-menu"></i>
+                <i class="fas fa-times icon-close"></i>
             </button>
         </nav>
     </header>
@@ -470,12 +514,17 @@
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-database"></i></div>
                         <h4 class="text-left">Премиальная аналитика</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Предоставление премиального доступа к углубленным аналитическим и due diligence отчетам нашего ИИ "Prometheus" для институциональных фондов и венчурных инвесторов.</p>
+                        <p class="text-left" style="color: var(--text-secondary);">Предоставление премиального доступа к углубленным аналитическим и due diligence отчетам нашего ИИ "Prometheus" для институциональных фондов.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-coins"></i></div>
                         <h4 class="text-left">Экономика нативного токена</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Запуск нативного токена для управления платформой (DAO), стейкинга и обеспечения ликвидности, что создаст циркулярную ценность и дополнительный доход.</p>
+                        <p class="text-left" style="color: var(--text-secondary);">Запуск нативного токена для управления платформой (DAO), стейкинга и обеспечения ликвидности, что создаст циркулярную ценность.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                        <h4 class="text-left">Инфраструктурные услуги</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Предоставление инфраструктуры для сторонних проектов (Launchpad as a Service), желающих запустить свои DeSci-инициативы на нашей платформе.</p>
                     </div>
                 </div>
             </div>
@@ -484,22 +533,37 @@
         <section id="investment-focus">
             <div class="container fade-in">
                 <h2>На что <span class="accent-text">пойдут инвестиции?</span></h2>
-                <p class="subtitle">Мы находимся на самом старте. Ваш капитал — это топливо, которое превратит наш технологический фундамент и видение в работающий продукт, готовый изменить рынок DeSci. Средства начального раунда будут направлены на три ключевые цели.</p>
+                <p class="subtitle">Ваш капитал — это топливо, которое превратит наш технологический фундамент и видение в работающий продукт, готовый изменить рынок DeSci. Средства начального раунда будут направлены на следующие ключевые цели.</p>
                 <div class="model-grid">
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-cogs"></i></div>
                         <h4 class="text-left">Разработка и запуск MVP</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Завершение разработки основной платформы, включая смарт-контракты для токенизации, RWA-мост и аналитическое ядро "Prometheus", с последующим аудитом безопасности.</p>
+                        <p class="text-left" style="color: var(--text-secondary);">Завершение разработки платформы, включая смарт-контракты, RWA-мост и ядро ИИ "Prometheus".</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-gavel"></i></div>
                         <h4 class="text-left">Юридическая структура</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Создание надежной юридической базы для операций с RWA в ключевых юрисдикциях, обеспечивая полное соответствие нормативным требованиям для защиты инвесторов.</p>
+                        <p class="text-left" style="color: var(--text-secondary);">Создание надежной юридической базы для операций с RWA в ключевых юрисдикциях для защиты инвесторов.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-users"></i></div>
-                        <h4 class="text-left">Формирование команды и партнерств</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Привлечение ведущих специалистов в области Web3, юриспруденции и биотехнологий, а также заключение партнерств с первыми научными проектами для пилотного запуска.</p>
+                        <h4 class="text-left">Формирование команды</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Привлечение ведущих специалистов в области Web3, юриспруденции и биотехнологий.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4 class="text-left">Аудит безопасности</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Проведение полного аудита смарт-контрактов и инфраструктуры у ведущей компании в сфере кибербезопасности.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                        <h4 class="text-left">Маркетинг и GR</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Первоначальная маркетинговая кампания для привлечения пилотных проектов и построение отношений с регуляторами.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-handshake"></i></div>
+                        <h4 class="text-left">Пилотные партнерства</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Заключение партнерств с первыми научными проектами и университетами для пилотного запуска платформы.</p>
                     </div>
                 </div>
             </div>
@@ -600,26 +664,33 @@
                 observer.observe(el);
             });
 
-            // Mobile menu toggle functionality
-            const navToggle = document.querySelector('.nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
+            // ИЗМЕНЕНИЕ: Функционал мобильного меню
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const body = document.body;
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                body.classList.toggle('nav-open');
+            });
 
-            if (navToggle && navLinks) {
-                navToggle.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    navToggle.classList.toggle('active');
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    body.classList.remove('nav-open');
                 });
+            });
 
-                // Close menu when a link is clicked
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                            navToggle.classList.remove('active');
-                        }
-                    });
-                });
-            }
+            document.addEventListener('click', (e) => {
+                const isMenuOpen = navLinks.classList.contains('active');
+                const isClickInsideMenu = navLinks.contains(e.target);
+                const isClickOnToggle = menuToggle.contains(e.target);
+
+                if (isMenuOpen && !isClickInsideMenu && !isClickOnToggle) {
+                    navLinks.classList.remove('active');
+                    body.classList.remove('nav-open');
+                }
+            });
         });
     </script>
 </body>
