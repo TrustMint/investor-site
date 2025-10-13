@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynapseAI | Привлечение инвестиций</title>
+    <meta name="description" content="Инвестиционное предложение SynapseAI. Мы привлекаем начальный раунд для создания децентрализованной платформы для финансирования биотехнологий с помощью ИИ.">
+    <link rel="icon" href="https://via.placeholder.com/32?text=S" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Базовые цвета */
+            --bg-dark: #050608;
+            --bg-deep: #030406; 
+            --bg-card: #0D121B; 
+            --text-primary: #E1E1E6;
+            --text-secondary: #A0A4AD; 
+            
+            /* Премиум Акцент */
+            --accent-gold: #FFD700; 
+            --accent-blue: #0077B6;
+            --shadow-gold: 0 0 15px rgba(255, 215, 0, 0.2);
+
+            /* Шрифты */
+            --font-main: 'Inter', sans-serif;
+            --font-headings: 'Montserrat', sans-serif; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- Глобальные элементы --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; } 
+        section { 
+            padding: 120px 0; 
+            position: relative; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        h1, h2, h3, h4 { 
+            font-family: var(--font-headings); 
+            font-weight: 700; 
+            line-height: 1.2; 
+            text-align: center; 
+        }
+        h2 { 
+            font-size: 52px; 
+            margin-bottom: 24px; 
+            letter-spacing: -0.5px;
+        }
+        p.subtitle { 
+            font-size: 19px; 
+            color: var(--text-secondary); 
+            max-width: 800px; 
+            margin: 0 auto 80px; 
+            text-align: center; 
+        }
+        .accent-text { 
+            color: var(--accent-gold); 
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); 
+        }
+        .text-left { text-align: left !important; }
+
+        .btn {
+            display: inline-block; padding: 14px 38px; font-family: var(--font-main); font-weight: 600; font-size: 17px; 
+            border-radius: 8px; text-decoration: none; transition: all 0.4s ease;
+            cursor: pointer; border: none; text-align: center;
+        }
+        .btn-primary { 
+            background: linear-gradient(45deg, var(--accent-gold), #FFEB99); 
+            color: #000; 
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        .btn-primary:hover { 
+            background-color: #fff; 
+            transform: translateY(-5px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4); 
+        }
+        .btn-secondary { 
+            background: transparent; 
+            color: var(--accent-gold); 
+            border: 2px solid var(--accent-gold); 
+        }
+        .btn-secondary:hover { 
+            background: var(--accent-gold); 
+            color: var(--bg-dark);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Хедер --- */
+        .header {
+            position: sticky; 
+            top: 0; width: 100%; z-index: 1000;
+            background: rgba(5, 6, 8, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 85px; } 
+        .logo { font-family: var(--font-headings); font-size: 26px; font-weight: 800; text-decoration: none; color: var(--text-primary); }
+        .logo .fa-atom { color: var(--accent-gold); margin-right: 8px; }
+        .nav-links { list-style: none; display: flex; gap: 40px; }
+        .nav-links a { color: var(--text-secondary); font-size: 16px; font-weight: 500; text-decoration: none; transition: color 0.3s; padding: 5px 0; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background-color: var(--accent-gold); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- Главный экран --- */
+        .hero { min-height: 90vh; display: flex; align-items: center; border-bottom: none; }
+        .hero-content { width: 100%; text-align: center; }
+        .hero-content h1 { font-size: 70px; margin-bottom: 28px; font-weight: 800; 
+            background: linear-gradient(45deg, #E1E1E6, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+        .hero-content p { max-width: 800px; margin: 0 auto 50px; font-size: 20px; color: var(--text-secondary); }
+        .hero-buttons { display: flex; justify-content: center; gap: 25px; }
+
+        /* --- Рыночная возможность (График) --- */
+        .opportunity-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; } 
+        .opportunity-content ul { list-style: none; padding-left: 0; }
+        .opportunity-content li { margin-bottom: 20px; padding-left: 35px; position: relative; font-size: 17px; }
+        .opportunity-content li::before {
+            content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            color: var(--accent-gold); position: absolute; left: 0; top: 3px;
+            font-size: 18px; 
+        }
+        
+        /* НОВЫЙ ЭЛЕМЕНТ: Абстрактный график роста */
+        .abstract-chart {
+            height: 300px; width: 100%; position: relative;
+            background: linear-gradient(to top, rgba(0, 119, 182, 0.05), transparent);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 10px 0;
+            border-radius: 8px;
+        }
+        .chart-line {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
+            background: linear-gradient(to right, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.8) 100%);
+            /* Имитация линии роста */
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline fill="none" stroke="black" stroke-width="5" points="0,95 25,70 50,40 75,5 100,5"/></svg>') no-repeat;
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline fill="none" stroke="black" stroke-width="5" points="0,95 25,70 50,40 75,5 100,5"/></svg>') no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+        }
+        .chart-peak {
+            position: absolute; top: 0; right: 0; 
+            font-size: 18px; font-weight: 700; color: var(--accent-gold);
+            padding: 5px 10px; background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold); border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+
+        /* --- Бизнес-модель --- */
+        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .model-card {
+            background: var(--bg-card); 
+            border: 1px solid rgba(255, 215, 0, 0.1); 
+            padding: 35px; border-radius: 12px; 
+            transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .model-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--accent-gold); 
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15); 
+        }
+        .model-card .icon { 
+            font-size: 40px; 
+            color: var(--accent-gold); 
+            margin-bottom: 20px;
+            text-shadow: var(--shadow-gold);
+        }
+        .model-card h4 { font-size: 20px; margin-bottom: 10px; font-weight: 700; }
+        
+        /* --- Дорожная карта --- */
+        .roadmap .timeline { position: relative; max-width: 900px; margin: 80px auto 0; }
+        .roadmap .timeline::before {
+            content: ''; position: absolute; top: 0; left: 50%; width: 3px; 
+            height: 100%; background: linear-gradient(to bottom, var(--accent-gold), rgba(255, 215, 0, 0.1)); 
+            transform: translateX(-50%);
+        }
+        .roadmap .phase {
+            padding: 35px 45px; position: relative; margin-bottom: 60px; width: 50%;
+            background: var(--bg-card); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .roadmap .phase::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            background-color: var(--bg-dark); 
+            border: 4px solid var(--accent-gold);
+            top: 36px; border-radius: 50%; z-index: 1;
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+        .roadmap .left { left: 0; padding-right: 70px; }
+        .roadmap .right { left: 50%; padding-left: 70px; }
+        .roadmap .left::after { right: -12px; }
+        .roadmap .right::after { left: -12px; }
+        .roadmap .phase h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; color: var(--accent-gold); text-align: left; }
+        .roadmap .phase ul { list-style-type: none; padding: 0; margin-top: 10px; color: var(--text-secondary); }
+        
+        .roadmap .phase li { 
+            margin-top: 10px; 
+            position: relative; 
+            padding-left: 25px; 
+        }
+        .roadmap .phase li::before {
+            content: '\2022'; 
+            font-family: Arial; 
+            position: absolute; 
+            left: 0; 
+            top: 0; 
+            color: var(--accent-gold); 
+            font-size: 1.2em;
+        }
+
+        /* --- Команда --- */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 900px; margin: 60px auto 0; }
+        .team-card { text-align: center; }
+        .team-avatar {
+            width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 25px;
+            border: 4px solid var(--accent-gold); 
+            background: var(--bg-card);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 70px; color: var(--accent-gold); transition: all 0.4s;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        .team-card:hover .team-avatar { 
+            border-color: #fff; 
+            box-shadow: 0 0 25px var(--accent-gold); 
+            transform: scale(1.05); 
+            color: var(--text-primary);
+        }
+        .team-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 5px;}
+        .team-card h4 { font-size: 17px; font-weight: 600; color: var(--accent-gold); margin-bottom: 15px; }
+        .team-card p { font-size: 16px; }
+
+        /* --- CTA --- */
+        .cta-section { text-align: center; border-bottom: none; padding-top: 50px; padding-bottom: 120px; }
+        .cta-card {
+            background-color: var(--bg-card); 
+            border: 1px solid var(--accent-gold); 
+            padding: 80px; border-radius: 15px; 
+            max-width: 1000px; margin: 0 auto;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1); 
+        }
+        .cta-card h2 { font-size: 42px; color: var(--text-primary); }
+        .cta-card p { max-width: 650px; margin: 0 auto 50px; font-size: 18px; }
+
+        /* --- Футер --- */
+        footer { padding: 60px 0; text-align: center; background-color: var(--bg-deep); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .footer-logo { font-family: var(--font-headings); font-size: 28px; margin-bottom: 20px; }
+        .footer-logo .fa-atom { color: var(--accent-gold); }
+        .footer-copy { color: #888; font-size: 13px; line-height: 1.5; }
+        
+        /* --- НОВЫЕ СТИЛИ: Социальные сети в футере --- */
+        .social-links { margin-bottom: 30px; display: flex; justify-content: center; gap: 25px; }
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 24px;
+            transition: color 0.4s, transform 0.4s;
+        }
+        .social-links a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .opportunity-content { grid-template-columns: 1fr; }
+            .abstract-chart { margin-top: 40px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .roadmap .phase { padding-right: 40px; padding-left: 40px; }
+            .roadmap .right { left: 0%; } 
+        }
+        @media (max-width: 768px) {
+            h2 { font-size: 40px; }
+            .hero-content h1 { font-size: 50px; }
+            .roadmap .timeline::before { display: none; }
+            .roadmap .phase { 
+                width: 100%; 
+                padding-left: 20px; 
+                padding-right: 20px;
+                left: 0 !important; 
+            }
+            .roadmap .phase::after { display: none; }
+            .cta-card { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="https://synapseairwa.com" class="logo"><i class="fas fa-atom"></i> SynapseAI</a>
+            <ul class="nav-links">
+                <li><a href="#opportunity">Возможность</a></li>
+                <li><a href="#business-model">Модель</a></li>
+                <li><a href="#roadmap">Карта</a></li>
+                <li><a href="#team">Команда</a></li>
+                <li><a href="https://dapp.synapseairwa.com" target="_blank" style="color: var(--accent-gold); font-weight: 700;">DApp (Demo)</a></li>
+            </ul>
+            <a href="#cta" class="btn btn-secondary">Стать партнером</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero" class="hero">
+            <div class="hero-content container fade-in">
+                <h1>Инвестируйте в инфраструктуру будущего биотеха</h1>
+                <p>SynapseAI создает платформу для токенизации и ИИ-анализа научных активов. Мы привлекаем начальный раунд финансирования для запуска и масштабирования проекта. Это шанс войти в рынок DeSci на этапе его зарождения.</p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn btn-primary">Получить Pitch Deck</a>
+                    <a href="#opportunity" class="btn btn-secondary">Узнать о рынке</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="opportunity">
+            <div class="container fade-in">
+                <h2>Рыночная <span class="accent-text">возможность</span></h2>
+                <p class="subtitle">Рынок финансирования биотехнологий ($2.5T) неэффективен и закрыт для большинства инвесторов. Мы используем Web3 и ИИ, чтобы создать новый, более ликвидный и прозрачный рынок.</p>
+                <div class="opportunity-content">
+                    <div class="opportunity-text">
+                        <h3 class="text-left">Проблема: Запертый капитал и высокий барьер</h3>
+                        <p class="text-left">Прорывные научные разработки требуют огромных вложений, но страдают от неликвидности (капитал заморожен на 5-10 лет) и информационной асимметрии. Это делает рынок доступным только для элитных фондов.</p>
+                        
+                        <h3 class="text-left" style="margin-top: 35px;">Наше решение: Инфраструктура для роста</h3>
+                        <ul class="text-left">
+                            <li><strong>Токенизация RWA:</strong> Мы превращаем будущие роялти от патентов в ликвидные цифровые активы (IP-токены) на BNB Chain, открывая доступ розничным и институциональным инвесторам.</li>
+                            <li><strong>ИИ-скоринг:</strong> Наш ИИ "Prometheus" анализирует риски, потенциал и научную достоверность проектов, обеспечивая беспрецедентную прозрачность.</li>
+                            <li><strong>Открытый рынок:</strong> Мы создаем децентрализованную площадку, где ученые получают финансирование напрямую, а инвесторы — диверсифицированный доступ к новому классу активов (DeSci).</li>
+                        </ul>
+                    </div>
+                    <div class="abstract-chart">
+                        <div class="chart-line"></div>
+                        <div class="chart-peak">Рынок $2.5T+</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="business-model" style="background-color: var(--bg-card);">
+            <div class="container fade-in">
+                <h2>Устойчивая Бизнес-модель</h2>
+                <p class="subtitle">Наша модель нацелена на создание устойчивой экосистемы с несколькими потоками дохода, которые будут расти вместе с объемом платформы и ликвидностью активов.</p>
+                <div class="model-grid">
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-percentage"></i></div>
+                        <h4 class="text-left">Комиссия с фандрайзинга</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Мы будем взимать небольшую комиссию (2-4%) с успешно профинансированных на платформе научных проектов и роялти-пулов.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-database"></i></div>
+                        <h4 class="text-left">Премиальная аналитика</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Предоставление премиального доступа к углубленным аналитическим и due diligence отчетам нашего ИИ "Prometheus" для институциональных фондов и венчурных инвесторов.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-coins"></i></div>
+                        <h4 class="text-left">Экономика нативного токена</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Запуск нативного токена для управления платформой (DAO), стейкинга и обеспечения ликвидности, что создаст циркулярную ценность и дополнительный доход.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="investment-focus">
+            <div class="container fade-in">
+                <h2>На что <span class="accent-text">пойдут инвестиции?</span></h2>
+                <p class="subtitle">Мы находимся на самом старте. Ваш капитал — это топливо, которое превратит наш технологический фундамент и видение в работающий продукт, готовый изменить рынок DeSci. Средства начального раунда будут направлены на три ключевые цели.</p>
+                <div class="model-grid">
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-cogs"></i></div>
+                        <h4 class="text-left">Разработка и запуск MVP</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Завершение разработки основной платформы, включая смарт-контракты для токенизации, RWA-мост и аналитическое ядро "Prometheus", с последующим аудитом безопасности.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-gavel"></i></div>
+                        <h4 class="text-left">Юридическая структура</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Создание надежной юридической базы для операций с RWA в ключевых юрисдикциях, обеспечивая полное соответствие нормативным требованиям для защиты инвесторов.</p>
+                    </div>
+                    <div class="model-card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h4 class="text-left">Формирование команды и партнерств</h4>
+                        <p class="text-left" style="color: var(--text-secondary);">Привлечение ведущих специалистов в области Web3, юриспруденции и биотехнологий, а также заключение партнерств с первыми научными проектами для пилотного запуска.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="roadmap" class="roadmap">
+            <div class="container fade-in">
+                <h2>Дорожная <span class="accent-text">карта</span></h2>
+                <p class="subtitle">Ваши инвестиции позволят нам реализовать следующие ключевые этапы развития проекта, обеспечив быстрый выход на рынок и масштабирование.</p>
+                <div class="timeline">
+                    <div class="phase left fade-in">
+                        <h3 class="text-left">Фаза 1: Фундамент (0-6 мес.)</h3>
+                        <ul>
+                            <li>Завершение разработки и обучения ИИ-модели V1 "Prometheus".</li>
+                            <li>Создание юридической RWA-базы и партнерство с первыми юристами.</li>
+                            <li>Запуск закрытого тестнета на BNB Testnet с выбранной группой инвесторов.</li>
+                        </ul>
+                    </div>
+                    <div class="phase right fade-in">
+                        <h3 class="text-left">Фаза 2: MVP и Запуск (6-12 мес.)</h3>
+                        <ul>
+                            <li>Запуск основной платформы (Mainnet) на BNB Chain и начало работы моста RWA.</li>
+                            <li>Привлечение первых 5-10 пилотных DeSci-проектов с общим объемом $5M+.</li>
+                            <li>Полный аудит смарт-контрактов ведущей компанией в сфере Web3.</li>
+                        </ul>
+                    </div>
+                    <div class="phase left fade-in">
+                        <h3 class="text-left">Фаза 3: Масштабирование и Ликвидность (12-18 мес.)</h3>
+                        <ul>
+                            <li>Интеграция с крупными институциональными инвесторами и фондами.</li>
+                            <li>Привлечение $100M+ в проекты, токенизированные через платформу.</li>
+                            <li>Рост пользовательской базы до 100,000+ уникальных инвесторов.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="team">
+             <div class="container fade-in">
+                 <h2>Наши <span class="accent-text">основатели</span></h2>
+                 <p class="subtitle">SynapseAI управляется синергией человеческого видения и машинного интеллекта. Наша команда сочетает экспертизу в Web3, финансах и биотехнологиях.</p>
+                 <div class="team-grid">
+                     <div class="team-card">
+                         <div class="team-avatar"><i class="fas fa-user-astronaut"></i></div>
+                         <h3>Александр</h3>
+                         <h4>Основатель и Идеолог</h4>
+                         <p style="color: var(--text-secondary);">Визионер с опытом в FinTech и DePIN. Он верит, что децентрализация и ИИ могут и должны служить прогрессу человечества. Александр создал SynapseAI, чтобы дать шанс каждой великой идее изменить мир.</p>
+                     </div>
+                     <div class="team-card">
+                         <div class="team-avatar"><i class="fas fa-robot"></i></div>
+                         <h3>Prometheus AI</h3>
+                         <h4>Главный аналитик (Автономная система)</h4>
+                         <p style="color: var(--text-secondary);">Передовая нейронная сеть, обученная на 100+ млн. научных публикаций, клинических испытаниях и патентных базах. Prometheus обеспечивает объективность и глубину анализа рисков, недоступную человеку.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="cta" class="cta-section">
+            <div class="container fade-in">
+                <div class="cta-card">
+                    <h2>Станьте нашим партнером на ранней стадии</h2>
+                    <p>Мы ищем визионеров, готовых инвестировать в инфраструктуру, которая изменит парадигму финансирования науки. Свяжитесь с нами, чтобы получить подробный Pitch Deck и обсудить эксклюзивные условия начального раунда.</p>
+                    <a href="mailto:invest@synapseai.com?subject=Инвестиционное предложение SynapseAI" class="btn btn-primary">Получить Pitch Deck</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo"><i class="fas fa-atom"></i> SynapseAI</div>
+             <div class="social-links">
+                <a href="#" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="footer-copy">
+                &copy; 2025 SynapseAI Holdings. Все права защищены.<br>
+                Данный сайт не является публичной офертой или предложением о продаже ценных бумаг. Информация предназначена для квалифицированных инвесторов.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
