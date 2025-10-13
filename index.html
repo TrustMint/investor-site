@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SynapseAI | Привлечение инвестиций</title>
     <meta name="description" content="Инвестиционное предложение SynapseAI. Мы привлекаем начальный раунд для создания децентрализованной платформы для финансирования биотехнологий с помощью ИИ.">
+    
     <link rel="icon" href="https://via.placeholder.com/32?text=S" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,12 +42,14 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            font-size: 16px; /* Базовый размер шрифта */
         }
 
         /* --- Глобальные элементы --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; } 
         section { 
-            padding: 120px 0; 
+            /* Адаптивные вертикальные отступы */
+            padding: clamp(60px, 10vw, 120px) 0; 
             position: relative; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
         }
@@ -55,13 +59,22 @@
             line-height: 1.2; 
             text-align: center; 
         }
+        
+        /* Плавная типографика */
+        h1 {
+            font-size: clamp(2.5rem, 5.5vw + 1rem, 4.375rem); /* 40px -> 70px */
+            margin-bottom: 28px; 
+            font-weight: 800; 
+        }
+        
         h2 { 
-            font-size: 52px; 
+            font-size: clamp(2.25rem, 5vw + 1rem, 3.25rem); /* 36px -> 52px */
             margin-bottom: 24px; 
             letter-spacing: -0.5px;
         }
+
         p.subtitle { 
-            font-size: 19px; 
+            font-size: clamp(1rem, 2vw + 0.5rem, 1.1875rem); /* 16px -> 19px */
             color: var(--text-secondary); 
             max-width: 800px; 
             margin: 0 auto 80px; 
@@ -74,7 +87,8 @@
         .text-left { text-align: left !important; }
 
         .btn {
-            display: inline-block; padding: 14px 38px; font-family: var(--font-main); font-weight: 600; font-size: 17px; 
+            display: inline-block; padding: 14px 38px; font-family: var(--font-main); font-weight: 600; 
+            font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.0625rem); /* 14.4px -> 17px */
             border-radius: 8px; text-decoration: none; transition: all 0.4s ease;
             cursor: pointer; border: none; text-align: center;
         }
@@ -119,16 +133,20 @@
         .nav-links a:hover::after { width: 100%; }
 
         /* --- Главный экран --- */
-        .hero { min-height: 90vh; display: flex; align-items: center; border-bottom: none; }
+        .hero { min-height: 90vh; display: flex; align-items: center; border-bottom: none; padding-top: 60px; padding-bottom: 60px; }
         .hero-content { width: 100%; text-align: center; }
-        .hero-content h1 { font-size: 70px; margin-bottom: 28px; font-weight: 800; 
+        .hero-content h1 {
             background: linear-gradient(45deg, #E1E1E6, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
         }
-        .hero-content p { max-width: 800px; margin: 0 auto 50px; font-size: 20px; color: var(--text-secondary); }
-        .hero-buttons { display: flex; justify-content: center; gap: 25px; }
+        .hero-content p { 
+            max-width: 800px; margin: 0 auto 50px; 
+            font-size: clamp(1.05rem, 2.5vw + 0.5rem, 1.25rem); /* 16.8px -> 20px */
+            color: var(--text-secondary); 
+        }
+        .hero-buttons { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
 
         /* --- Рыночная возможность (График) --- */
         .opportunity-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; } 
@@ -140,7 +158,6 @@
             font-size: 18px; 
         }
         
-        /* НОВЫЙ ЭЛЕМЕНТ: Абстрактный график роста */
         .abstract-chart {
             height: 300px; width: 100%; position: relative;
             background: linear-gradient(to top, rgba(0, 119, 182, 0.05), transparent);
@@ -151,7 +168,6 @@
         .chart-line {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
             background: linear-gradient(to right, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.8) 100%);
-            /* Имитация линии роста */
             -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline fill="none" stroke="black" stroke-width="5" points="0,95 25,70 50,40 75,5 100,5"/></svg>') no-repeat;
             mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline fill="none" stroke="black" stroke-width="5" points="0,95 25,70 50,40 75,5 100,5"/></svg>') no-repeat;
             -webkit-mask-size: 100% 100%;
@@ -165,9 +181,13 @@
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-
         /* --- Бизнес-модель --- */
-        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .model-grid { 
+            display: grid; 
+            /* Используем minmax для адаптивных колонок */
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
+            gap: 30px; 
+        }
         .model-card {
             background: var(--bg-card); 
             border: 1px solid rgba(255, 215, 0, 0.1); 
@@ -215,7 +235,6 @@
         .roadmap .right::after { left: -12px; }
         .roadmap .phase h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; color: var(--accent-gold); text-align: left; }
         .roadmap .phase ul { list-style-type: none; padding: 0; margin-top: 10px; color: var(--text-secondary); }
-        
         .roadmap .phase li { 
             margin-top: 10px; 
             position: relative; 
@@ -253,15 +272,19 @@
         .team-card p { font-size: 16px; }
 
         /* --- CTA --- */
-        .cta-section { text-align: center; border-bottom: none; padding-top: 50px; padding-bottom: 120px; }
+        .cta-section { text-align: center; border-bottom: none; padding-top: 50px; padding-bottom: clamp(60px, 10vw, 120px); }
         .cta-card {
             background-color: var(--bg-card); 
             border: 1px solid var(--accent-gold); 
-            padding: 80px; border-radius: 15px; 
+            padding: clamp(30px, 8vw, 80px); /* Адаптивный внутренний отступ */
+            border-radius: 15px; 
             max-width: 1000px; margin: 0 auto;
             box-shadow: 0 0 50px rgba(255, 215, 0, 0.1); 
         }
-        .cta-card h2 { font-size: 42px; color: var(--text-primary); }
+        .cta-card h2 { 
+            font-size: clamp(1.8rem, 4vw + 1rem, 2.625rem); /* 28.8px -> 42px */
+            color: var(--text-primary); 
+        }
         .cta-card p { max-width: 650px; margin: 0 auto 50px; font-size: 18px; }
 
         /* --- Футер --- */
@@ -270,7 +293,6 @@
         .footer-logo .fa-atom { color: var(--accent-gold); }
         .footer-copy { color: #888; font-size: 13px; line-height: 1.5; }
         
-        /* --- НОВЫЕ СТИЛИ: Социальные сети в футере --- */
         .social-links { margin-bottom: 30px; display: flex; justify-content: center; gap: 25px; }
         .social-links a {
             color: var(--text-secondary);
@@ -283,26 +305,56 @@
         }
 
         /* --- Адаптивность --- */
+        
+        /* Планшеты и небольшие десктопы (до 992px) */
         @media (max-width: 992px) {
-            .nav-links { display: none; }
-            .opportunity-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Скрываем навигацию, как и было */
+            .opportunity-content { grid-template-columns: 1fr; gap: 40px; }
             .abstract-chart { margin-top: 40px; }
-            .team-grid { grid-template-columns: 1fr; }
-            .roadmap .phase { padding-right: 40px; padding-left: 40px; }
-            .roadmap .right { left: 0%; } 
-        }
-        @media (max-width: 768px) {
-            h2 { font-size: 40px; }
-            .hero-content h1 { font-size: 50px; }
-            .roadmap .timeline::before { display: none; }
+            .team-grid { grid-template-columns: 1fr; max-width: 500px; }
+            
+            /* Исправленная верстка Roadmap для планшетов */
+            .roadmap .timeline::before { left: 20px; transform: none; }
             .roadmap .phase { 
                 width: 100%; 
-                padding-left: 20px; 
-                padding-right: 20px;
-                left: 0 !important; 
+                left: 0; 
+                padding-left: 70px; 
+                padding-right: 20px; 
+                margin-bottom: 40px;
+            }
+            .roadmap .right { left: 0; }
+            .roadmap .phase::after { left: 10px; }
+        }
+
+        /* Мобильные устройства (до 768px) */
+        @media (max-width: 768px) {
+            body { line-height: 1.6; }
+            p.subtitle { margin-bottom: 60px; }
+            .roadmap .timeline::before { display: none; }
+            .roadmap .phase { 
+                padding: 25px; 
             }
             .roadmap .phase::after { display: none; }
-            .cta-card { padding: 40px 20px; }
+            .cta-card { padding: 40px 25px; }
+        }
+
+        /* Маленькие мобильные устройства (до 480px) */
+        @media (max-width: 480px) {
+            .container { padding: 0 15px; }
+            .hero-buttons { 
+                flex-direction: column; 
+                align-items: center; 
+                width: 100%;
+            }
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 320px;
+            }
+            .model-grid {
+                 grid-template-columns: 1fr;
+            }
+            .team-grid { gap: 40px; }
+            .team-avatar { width: 140px; height: 140px; font-size: 60px; }
         }
     </style>
 </head>
