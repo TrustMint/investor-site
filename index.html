@@ -131,6 +131,16 @@
         .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background-color: var(--accent-gold); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { width: 100%; }
+        
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            display: none; /* Скрыт на десктопе */
+            z-index: 1001;
+        }
 
         /* --- Главный экран --- */
         .hero { min-height: 90vh; display: flex; align-items: center; border-bottom: none; padding-top: 60px; padding-bottom: 60px; }
@@ -308,7 +318,39 @@
         
         /* Планшеты и небольшие десктопы (до 992px) */
         @media (max-width: 992px) {
-            .nav-links { display: none; } /* Скрываем навигацию, как и было */
+            /* НАЧАЛО: ИСПРАВЛЕНИЕ МОБИЛЬНОГО МЕНЮ */
+            .nav-toggle {
+                display: block; /* Показываем гамбургер */
+            }
+            .nav-toggle .fa-times { display: none; }
+            .nav-toggle.active .fa-bars { display: none; }
+            .nav-toggle.active .fa-times { display: block; }
+            .header .btn-secondary {
+                display: none; /* Скрываем кнопку в хедере на мобильных */
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            .nav-links a {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+            }
+            /* КОНЕЦ: ИСПРАВЛЕНИЕ МОБИЛЬНОГО МЕНЮ */
+
             .opportunity-content { grid-template-columns: 1fr; gap: 40px; }
             .abstract-chart { margin-top: 40px; }
             .team-grid { grid-template-columns: 1fr; max-width: 500px; }
@@ -371,6 +413,10 @@
                 <li><a href="https://app.synapseairwa.com" target="_blank" style="color: var(--accent-gold); font-weight: 700;">DApp (Demo)</a></li>
             </ul>
             <a href="#cta" class="btn btn-secondary">Стать партнером</a>
+            <button class="nav-toggle" aria-label="Открыть/Закрыть меню">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </button>
         </nav>
     </header>
 
@@ -553,6 +599,27 @@
             document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
             });
+
+            // Mobile menu toggle functionality
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            navToggle.classList.remove('active');
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
