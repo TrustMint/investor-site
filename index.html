@@ -37,7 +37,7 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-main);
-            background-color: var(--bg-dark); /* FIX: Fallback for gradient */
+            background-color: var(--bg-dark); /* FIX: Убирает белую полосу */
             background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
             color: var(--text-primary);
             line-height: 1.7;
@@ -119,25 +119,38 @@
 
         /* --- ИЗМЕНЕНИЕ: Хедер --- */
         .header {
-            position: fixed;
+            position: fixed; 
             top: 15px;
             width: 95%;
             max-width: 1200px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            /* EDIT: Made header more "glassy" and distinct */
-            background: rgba(13, 18, 27, 0.65);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(13, 18, 27, 0.7);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            /* END EDIT */
             border-radius: 50px;
         }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 85px; } 
-        .logo { font-family: var(--font-headings); font-size: 26px; font-weight: 800; text-decoration: none; color: var(--text-primary); }
-        .logo .fa-atom { color: var(--accent-gold); margin-right: 8px; }
+        
+        /* EDIT: More interesting logo */
+        .logo {
+            font-family: var(--font-headings);
+            font-size: 26px;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(45deg, #FFFFFF, #BDBDBD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .logo .fa-atom {
+            color: var(--accent-gold);
+            margin-right: 8px;
+            -webkit-text-fill-color: var(--accent-gold); /* Restore icon color */
+        }
         
         .header-buttons {
             display: flex;
@@ -183,6 +196,11 @@
             transition: transform 0.3s ease;
         }
         .mobile-menu-toggle .icon-close { display: none; }
+        
+        /* EDIT: Hide mobile socials on desktop */
+        .mobile-social-links {
+            display: none;
+        }
 
 
         /* --- Главный экран --- */
@@ -191,7 +209,7 @@
             display: flex; 
             align-items: center; 
             border-bottom: none; 
-            padding-top: 130px; /* ИЗМЕНЕНИЕ: Отступ для плавающего хедера */
+            padding-top: 130px; 
             padding-bottom: 60px; 
         }
         .hero-content { width: 100%; text-align: center; }
@@ -365,22 +383,16 @@
 
         /* --- Адаптивность --- */
         
-        @media (min-width: 1200px) {
-            /* EDIT: Force 4 columns for business model on desktop */
+        @media (min-width: 1201px) {
             #business-model .model-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
-
+        
         @media (max-width: 992px) {
-            /* EDIT: Reduce header top offset to remove "white bar" effect */
             .header {
                 top: 10px;
                 width: 97%;
-            }
-            /* EDIT: Group DApp button and menu toggle on the right */
-            .header-buttons {
-                margin-left: auto;
             }
 
             .mobile-menu-toggle {
@@ -389,9 +401,9 @@
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: 0; /* Changed from left to right */
-                width: 60%;
-                max-width: 300px;
+                right: 0;
+                width: 70%;
+                max-width: 320px;
                 height: 100vh;
                 background: var(--bg-dark);
                 flex-direction: column;
@@ -415,6 +427,27 @@
             body.nav-open .mobile-menu-toggle .icon-menu { display: none; }
             body.nav-open .mobile-menu-toggle .icon-close { display: block; }
             .header-buttons .btn-secondary { display: none; }
+            
+            /* EDIT: Styles for social links in mobile menu */
+            .nav-links .mobile-social-links {
+                display: flex;
+                gap: 30px;
+                position: absolute;
+                bottom: 50px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 20px 0;
+                width: 80%;
+                justify-content: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .mobile-social-links a {
+                font-size: 24px;
+                padding: 0; /* Override nav link padding */
+            }
+            .mobile-social-links a::after {
+                display: none !important; /* Remove hover underline */
+            }
 
             .opportunity-content { grid-template-columns: 1fr; gap: 40px; }
             .abstract-chart { margin-top: 40px; }
@@ -434,6 +467,18 @@
         @media (max-width: 768px) {
             body { line-height: 1.6; }
             p.subtitle { margin-bottom: 60px; }
+            .navbar .header-buttons {
+                display: none; /* Hide all buttons on smaller screens to avoid overlap */
+            }
+            .navbar {
+                justify-content: space-between;
+            }
+            .navbar .logo {
+                margin-right: auto;
+            }
+            .mobile-menu-toggle {
+                margin-left: 20px;
+            }
             .roadmap .timeline::before { display: none; }
             .roadmap .phase { 
                 padding: 25px; 
@@ -472,6 +517,12 @@
                 <li><a href="#business-model">Модель</a></li>
                 <li><a href="#roadmap">Карта</a></li>
                 <li><a href="#team">Команда</a></li>
+                <li class="mobile-social-links">
+                     <a href="#" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+                     <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                     <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                     <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </li>
             </ul>
             
             <div class="header-buttons">
@@ -698,8 +749,11 @@
 
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    body.classList.remove('nav-open');
+                    // Do not close menu if a social link is clicked
+                    if (!link.parentElement.classList.contains('mobile-social-links')) {
+                        navLinks.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    }
                 });
             });
 
