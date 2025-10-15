@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="en"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynapseAI | Привлечение инвестиций</title>
-    <meta name="description" content="Инвестиционное предложение SynapseAI. Мы привлекаем начальный раунд для создания децентрализованной платформы для финансирования биотехнологий с помощью ИИ.">
+    <meta name="description" content="SynapseAI Investment Proposal. We are raising a seed round to build a decentralized AI-powered platform for biotech financing." data-lang-en>
+    <meta name="description" content="Инвестиционное предложение SynapseAI. Мы привлекаем начальный раунд для создания децентрализованной платформы для финансирования биотехнологий с помощью ИИ." data-lang-ru style="display: none;">
     
+    <title>SynapseAI | Attracting Investment</title>
+
     <link rel="icon" href="https://via.placeholder.com/32?text=S" type="image/x-icon">
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -215,7 +216,26 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 8px; /* Расстояние между кнопкой DApp и меню */
+            gap: 15px; 
+        }
+        
+        /* NEW: Language Switcher Styles */
+        .lang-switcher {
+            background: transparent;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: var(--accent-gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .lang-switcher:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            box-shadow: var(--shadow-gold);
         }
 
         /* --- Главный экран --- */
@@ -449,7 +469,6 @@
                 transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease, visibility 0s;
             }
             
-            /* ИЗМЕНЕНИЕ: Добавлена анимация для пунктов меню */
             .nav-links-mobile li {
                 opacity: 0;
                 transform: translateX(15px);
@@ -459,13 +478,12 @@
                 opacity: 1;
                 transform: translateX(0);
             }
-            /* ИЗМЕНЕНИЕ: Добавлена задержка для последовательного появления */
             .nav-links-mobile.active li:nth-child(1) { transition-delay: 0.1s; }
             .nav-links-mobile.active li:nth-child(2) { transition-delay: 0.15s; }
             .nav-links-mobile.active li:nth-child(3) { transition-delay: 0.2s; }
             .nav-links-mobile.active li:nth-child(4) { transition-delay: 0.25s; }
             .nav-links-mobile.active li:nth-child(5) { transition-delay: 0.3s; }
-            .nav-links-mobile.active li:nth-child(6) { transition-delay: 0.35s; } /* Для соц. иконок */
+            .nav-links-mobile.active li:nth-child(6) { transition-delay: 0.35s; }
 
 
             .nav-links-mobile a {
@@ -473,7 +491,6 @@
                 font-weight: 500;
                 width: 100%;
                 padding: 10px 0;
-                /* ИЗМЕНЕНИЕ: Новый градиентный цвет для текста */
                 background: linear-gradient(90deg, var(--accent-gold), var(--text-primary) 60%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -483,7 +500,7 @@
                 filter: brightness(1.2);
             }
             .nav-links-mobile a::after {
-                display: none; /* Убираем стандартное подчеркивание */
+                display: none;
             }
 
             body.nav-open .mobile-menu-toggle .icon-menu { display: none; }
@@ -507,11 +524,11 @@
             .mobile-social-links a {
                 font-size: 24px;
                 padding: 0;
-                background: none; /* Сбрасываем градиент для иконок */
-                -webkit-text-fill-color: var(--text-secondary); /* Возвращаем цвет иконкам */
+                background: none; 
+                -webkit-text-fill-color: var(--text-secondary); 
             }
             .mobile-social-links a:hover {
-                -webkit-text-fill-color: var(--accent-gold); /* Цвет иконок при наведении */
+                -webkit-text-fill-color: var(--accent-gold);
                  filter: none;
             }
             .mobile-social-links a::after {
@@ -543,6 +560,17 @@
             }
             .roadmap .phase::after { display: none; }
             .cta-card { padding: 40px 25px; }
+
+            /* NEW: Reposition lang switcher for smaller screens */
+            .header-controls {
+                gap: 8px;
+            }
+            .header-buttons {
+                gap: 8px;
+            }
+            .lang-switcher {
+                margin-right: 5px; /* Add some space before hamburger */
+            }
         }
 
         @media (max-width: 480px) {
@@ -571,16 +599,17 @@
             <a href="https://synapseairwa.com" class="logo"><i class="fas fa-atom"></i> SynapseAI</a>
             
             <ul class="nav-links">
-                <li><a href="https://synapseairwa.com/">О нас</a></li>
-                <li><a href="#opportunity">Возможность</a></li>
-                <li><a href="#business-model">Модель</a></li>
-                <li><a href="#roadmap">Карта</a></li>
-                <li><a href="#team">Команда</a></li>
+                <li><a href="https://synapseairwa.com/" data-lang-en="About Us" data-lang-ru="О нас">About Us</a></li>
+                <li><a href="#opportunity" data-lang-en="Opportunity" data-lang-ru="Возможность">Opportunity</a></li>
+                <li><a href="#business-model" data-lang-en="Model" data-lang-ru="Модель">Model</a></li>
+                <li><a href="#roadmap" data-lang-en="Roadmap" data-lang-ru="Карта">Roadmap</a></li>
+                <li><a href="#team" data-lang-en="Team" data-lang-ru="Команда">Team</a></li>
             </ul>
 
             <div class="header-controls">
+                <button class="lang-switcher" id="lang-switcher">RU</button>
                 <div class="header-buttons">
-                     <a href="#cta" class="btn btn-secondary">Стать партнером</a>
+                     <a href="#cta" class="btn btn-secondary" data-lang-en="Become a Partner" data-lang-ru="Стать партнером">Become a Partner</a>
                      <a href="https://app.synapseairwa.com" target="_blank" class="btn btn-primary">DApp (Demo)</a>
                 </div>
 
@@ -593,11 +622,11 @@
         
         <div class="container">
              <ul class="nav-links-mobile" id="nav-links-mobile">
-                <li><a href="https://synapseairwa.com/">О нас</a></li>
-                <li><a href="#opportunity">Возможность</a></li>
-                <li><a href="#business-model">Модель</a></li>
-                <li><a href="#roadmap">Карта</a></li>
-                <li><a href="#team">Команда</a></li>
+                <li><a href="https://synapseairwa.com/" data-lang-en="About Us" data-lang-ru="О нас">About Us</a></li>
+                <li><a href="#opportunity" data-lang-en="Opportunity" data-lang-ru="Возможность">Opportunity</a></li>
+                <li><a href="#business-model" data-lang-en="Model" data-lang-ru="Модель">Model</a></li>
+                <li><a href="#roadmap" data-lang-en="Roadmap" data-lang-ru="Карта">Roadmap</a></li>
+                <li><a href="#team" data-lang-en="Team" data-lang-ru="Команда">Team</a></li>
                 <li class="mobile-social-links">
                      <a href="https://x.com/YourUsername" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
                      <a href="https://linkedin.com/company/YourCompany" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -612,34 +641,34 @@
 
         <section id="hero" class="hero">
             <div class="hero-content container fade-in">
-                <h1>Инвестируйте в алгоритм, который изменит биотехнологии навсегда.</h1>
-                <p>SynapseAI создает платформу для токенизации и ИИ-анализа научных активов. Мы привлекаем начальный раунд финансирования для запуска и масштабирования проекта. Это шанс войти в рынок DeSci на этапе его зарождения.</p>
+                <h1 data-lang-en="Invest in the algorithm that will change biotechnology forever." data-lang-ru="Инвестируйте в алгоритм, который изменит биотехнологии навсегда.">Invest in the algorithm that will change biotechnology forever.</h1>
+                <p data-lang-en="SynapseAI is building a platform for tokenizing and AI-analyzing scientific assets. We are raising a seed round to launch and scale the project. This is a chance to enter the DeSci market at its inception." data-lang-ru="SynapseAI создает платформу для токенизации и ИИ-анализа научных активов. Мы привлекаем начальный раунд финансирования для запуска и масштабирования проекта. Это шанс войти в рынок DeSci на этапе его зарождения.">SynapseAI is building a platform for tokenizing and AI-analyzing scientific assets. We are raising a seed round to launch and scale the project. This is a chance to enter the DeSci market at its inception.</p>
                 <div class="hero-buttons">
-                    <a href="#cta" class="btn btn-primary">Получить Pitch Deck</a>
-                    <a href="#opportunity" class="btn btn-secondary">Узнать о рынке</a>
+                    <a href="#cta" class="btn btn-primary" data-lang-en="Get Pitch Deck" data-lang-ru="Получить Pitch Deck">Get Pitch Deck</a>
+                    <a href="#opportunity" class="btn btn-secondary" data-lang-en="Learn About the Market" data-lang-ru="Узнать о рынке">Learn About the Market</a>
                 </div>
             </div>
         </section>
 
         <section id="opportunity">
             <div class="container fade-in">
-                <h2>Рыночная <span class="accent-text">возможность</span></h2>
-                <p class="subtitle">Рынок финансирования биотехнологий ($2.5T) неэффективен и закрыт для большинства инвесторов. Мы используем Web3 и ИИ, чтобы создать новый, более ликвидный и прозрачный рынок.</p>
+                <h2><span data-lang-en="Market" data-lang-ru="Рыночная">Market</span> <span class="accent-text" data-lang-en="Opportunity" data-lang-ru="возможность">Opportunity</span></h2>
+                <p class="subtitle" data-lang-en="The biotech funding market ($2.5T) is inefficient and closed to most investors. We use Web3 and AI to create a new, more liquid and transparent market." data-lang-ru="Рынок финансирования биотехнологий ($2.5T) неэффективен и закрыт для большинства инвесторов. Мы используем Web3 и ИИ, чтобы создать новый, более ликвидный и прозрачный рынок.">The biotech funding market ($2.5T) is inefficient and closed to most investors. We use Web3 and AI to create a new, more liquid and transparent market.</p>
                 <div class="opportunity-content">
                     <div class="opportunity-text">
-                        <h3 class="text-left">Проблема: Запертый капитал и высокий барьер</h3>
-                        <p class="text-left">Прорывные научные разработки требуют огромных вложений, но страдают от неликвидности (капитал заморожен на 5-10 лет) и информационной асимметрии. Это делает рынок доступным только для элитных фондов.</p>
+                        <h3 class="text-left" data-lang-en="Problem: Locked Capital and High Barriers" data-lang-ru="Проблема: Запертый капитал и высокий барьер">Problem: Locked Capital and High Barriers</h3>
+                        <p class="text-left" data-lang-en="Breakthrough scientific developments require huge investments but suffer from illiquidity (capital frozen for 5-10 years) and information asymmetry. This makes the market accessible only to elite funds." data-lang-ru="Прорывные научные разработки требуют огромных вложений, но страдают от неликвидности (капитал заморожен на 5-10 лет) и информационной асимметрии. Это делает рынок доступным только для элитных фондов.">Breakthrough scientific developments require huge investments but suffer from illiquidity (capital frozen for 5-10 years) and information asymmetry. This makes the market accessible only to elite funds.</p>
                         
-                        <h3 class="text-left" style="margin-top: 35px;">Наше решение: Инфраструктура для роста</h3>
+                        <h3 class="text-left" style="margin-top: 35px;" data-lang-en="Our Solution: Infrastructure for Growth" data-lang-ru="Наше решение: Инфраструктура для роста">Our Solution: Infrastructure for Growth</h3>
                         <ul class="text-left">
-                            <li><strong>Токенизация RWA:</strong> Мы превращаем будущие роялти от патентов в ликвидные цифровые активы (IP-токены) на BNB Chain, открывая доступ розничным и институциональным инвесторам.</li>
-                            <li><strong>ИИ-скоринг:</strong> Наш ИИ "Prometheus" анализирует риски, потенциал и научную достоверность проектов, обеспечивая беспрецедентную прозрачность.</li>
-                            <li><strong>Открытый рынок:</strong> Мы создаем децентрализованную площадку, где ученые получают финансирование напрямую, а инвесторы — диверсифицированный доступ к новому классу активов (DeSci).</li>
+                            <li><strong data-lang-en="RWA Tokenization:" data-lang-ru="Токенизация RWA:">RWA Tokenization:</strong> <span data-lang-en="We turn future royalties from patents into liquid digital assets (IP-tokens) on the BNB Chain, opening access to retail and institutional investors." data-lang-ru="Мы превращаем будущие роялти от патентов в ликвидные цифровые активы (IP-токены) на BNB Chain, открывая доступ розничным и институциональным инвесторам.">We turn future royalties from patents into liquid digital assets (IP-tokens) on the BNB Chain, opening access to retail and institutional investors.</span></li>
+                            <li><strong data-lang-en="AI Scoring:" data-lang-ru="ИИ-скоринг:">AI Scoring:</strong> <span data-lang-en='Our AI "Prometheus" analyzes risks, potential, and scientific validity of projects, providing unprecedented transparency.' data-lang-ru='Наш ИИ "Prometheus" анализирует риски, потенциал и научную достоверность проектов, обеспечивая беспрецедентную прозрачность.'>Our AI "Prometheus" analyzes risks, potential, and scientific validity of projects, providing unprecedented transparency.</span></li>
+                            <li><strong data-lang-en="Open Marketplace:" data-lang-ru="Открытый рынок:">Open Marketplace:</strong> <span data-lang-en="We are creating a decentralized marketplace where scientists get funding directly, and investors get diversified access to a new asset class (DeSci)." data-lang-ru="Мы создаем децентрализованную площадку, где ученые получают финансирование напрямую, а инвесторы — диверсифицированный доступ к новому классу активов (DeSci).">We are creating a decentralized marketplace where scientists get funding directly, and investors get diversified access to a new asset class (DeSci).</span></li>
                         </ul>
                     </div>
                     <div class="abstract-chart">
                         <div class="chart-line"></div>
-                        <div class="chart-peak">Рынок $2.5T+</div>
+                        <div class="chart-peak" data-lang-en="Market $2.5T+" data-lang-ru="Рынок $2.5T+">Market $2.5T+</div>
                     </div>
                 </div>
             </div>
@@ -647,28 +676,28 @@
 
         <section id="business-model" style="background-color: var(--bg-card);">
             <div class="container fade-in">
-                <h2>Устойчивая Бизнес-модель</h2>
-                <p class="subtitle">Наша модель нацелена на создание устойчивой экосистемы с несколькими потоками дохода, которые будут расти вместе с объемом платформы и ликвидностью активов.</p>
+                <h2 data-lang-en="Sustainable Business Model" data-lang-ru="Устойчивая Бизнес-модель">Sustainable Business Model</h2>
+                <p class="subtitle" data-lang-en="Our model aims to create a sustainable ecosystem with multiple revenue streams that will grow with the platform's volume and asset liquidity." data-lang-ru="Наша модель нацелена на создание устойчивой экосистемы с несколькими потоками дохода, которые будут расти вместе с объемом платформы и ликвидностью активов.">Our model aims to create a sustainable ecosystem with multiple revenue streams that will grow with the platform's volume and asset liquidity.</p>
                 <div class="model-grid">
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-percentage"></i></div>
-                        <h4 class="text-left">Комиссия с фандрайзинга</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Мы будем взимать небольшую комиссию (2-4%) с успешно профинансированных на платформе научных проектов и роялти-пулов.</p>
+                        <h4 class="text-left" data-lang-en="Fundraising Commission" data-lang-ru="Комиссия с фандрайзинга">Fundraising Commission</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="We will charge a small commission (2-4%) on successfully funded scientific projects and royalty pools on the platform." data-lang-ru="Мы будем взимать небольшую комиссию (2-4%) с успешно профинансированных на платформе научных проектов и роялти-пулов.">We will charge a small commission (2-4%) on successfully funded scientific projects and royalty pools on the platform.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-database"></i></div>
-                        <h4 class="text-left">Премиальная аналитика</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Предоставление премиального доступа к углубленным аналитическим и due diligence отчетам нашего ИИ "Prometheus" для институциональных фондов.</p>
+                        <h4 class="text-left" data-lang-en="Premium Analytics" data-lang-ru="Премиальная аналитика">Premium Analytics</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en='Providing premium access to in-depth analytical and due diligence reports from our AI "Prometheus" for institutional funds.' data-lang-ru='Предоставление премиального доступа к углубленным аналитическим и due diligence отчетам нашего ИИ "Prometheus" для институциональных фондов.'>Providing premium access to in-depth analytical and due diligence reports from our AI "Prometheus" for institutional funds.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-coins"></i></div>
-                        <h4 class="text-left">Экономика нативного токена</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Запуск нативного токена для управления платформой (DAO), стейкинга и обеспечения ликвидности, что создаст циркулярную ценность.</p>
+                        <h4 class="text-left" data-lang-en="Native Token Economy" data-lang-ru="Экономика нативного токена">Native Token Economy</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Launching a native token for platform governance (DAO), staking, and liquidity provision, which will create circular value." data-lang-ru="Запуск нативного токена для управления платформой (DAO), стейкинга и обеспечения ликвидности, что создаст циркулярную ценность.">Launching a native token for platform governance (DAO), staking, and liquidity provision, which will create circular value.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-hands-helping"></i></div>
-                        <h4 class="text-left">Инфраструктурные услуги</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Предоставление инфраструктуры для сторонних проектов (Launchpad as a Service), желающих запустить свои DeSci-инициативы на нашей платформе.</p>
+                        <h4 class="text-left" data-lang-en="Infrastructure Services" data-lang-ru="Инфраструктурные услуги">Infrastructure Services</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Providing infrastructure for third-party projects (Launchpad as a Service) wishing to launch their DeSci initiatives on our platform." data-lang-ru="Предоставление инфраструктуры для сторонних проектов (Launchpad as a Service), желающих запустить свои DeSci-инициативы на нашей платформе.">Providing infrastructure for third-party projects (Launchpad as a Service) wishing to launch their DeSci initiatives on our platform.</p>
                     </div>
                 </div>
             </div>
@@ -676,69 +705,69 @@
         
         <section id="investment-focus">
             <div class="container fade-in">
-                <h2>На что <span class="accent-text">пойдут инвестиции?</span></h2>
-                <p class="subtitle">Ваш капитал — это топливо, которое превратит наш технологический фундамент и видение в работающий продукт, готовый изменить рынок DeSci. Средства начального раунда будут направлены на следующие ключевые цели.</p>
+                <h2><span data-lang-en="Use of" data-lang-ru="На что пойдут">Use of</span> <span class="accent-text" data-lang-en="Funds" data-lang-ru="инвестиции?">Funds</span></h2>
+                <p class="subtitle" data-lang-en="Your capital is the fuel that will turn our technological foundation and vision into a working product ready to change the DeSci market. The seed round funds will be allocated to the following key objectives." data-lang-ru="Ваш капитал — это топливо, которое превратит наш технологический фундамент и видение в работающий продукт, готовый изменить рынок DeSci. Средства начального раунда будут направлены на следующие ключевые цели.">Your capital is the fuel that will turn our technological foundation and vision into a working product ready to change the DeSci market. The seed round funds will be allocated to the following key objectives.</p>
                 <div class="model-grid">
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-cogs"></i></div>
-                        <h4 class="text-left">Разработка и запуск MVP</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Завершение разработки платформы, включая смарт-контракты, RWA-мост и ядро ИИ "Prometheus".</p>
+                        <h4 class="text-left" data-lang-en="MVP Development & Launch" data-lang-ru="Разработка и запуск MVP">MVP Development & Launch</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en='Completing platform development, including smart contracts, the RWA bridge, and the "Prometheus" AI core.' data-lang-ru='Завершение разработки платформы, включая смарт-контракты, RWA-мост и ядро ИИ "Prometheus".'>Completing platform development, including smart contracts, the RWA bridge, and the "Prometheus" AI core.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-gavel"></i></div>
-                        <h4 class="text-left">Юридическая структура</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Создание надежной юридической базы для операций с RWA в ключевых юрисдикциях для защиты инвесторов.</p>
+                        <h4 class="text-left" data-lang-en="Legal Structure" data-lang-ru="Юридическая структура">Legal Structure</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Establishing a robust legal framework for RWA operations in key jurisdictions to protect investors." data-lang-ru="Создание надежной юридической базы для операций с RWA в ключевых юрисдикциях для защиты инвесторов.">Establishing a robust legal framework for RWA operations in key jurisdictions to protect investors.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-users"></i></div>
-                        <h4 class="text-left">Формирование команды</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Привлечение ведущих специалистов в области Web3, юриспруденции и биотехнологий.</p>
+                        <h4 class="text-left" data-lang-en="Team Expansion" data-lang-ru="Формирование команды">Team Expansion</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Recruiting top specialists in Web3, law, and biotechnology." data-lang-ru="Привлечение ведущих специалистов в области Web3, юриспруденции и биотехнологий.">Recruiting top specialists in Web3, law, and biotechnology.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-shield-alt"></i></div>
-                        <h4 class="text-left">Аудит безопасности</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Проведение полного аудита смарт-контрактов и инфраструктуры у ведущей компании в сфере кибербезопасности.</p>
+                        <h4 class="text-left" data-lang-en="Security Audit" data-lang-ru="Аудит безопасности">Security Audit</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Conducting a full audit of smart contracts and infrastructure with a leading cybersecurity firm." data-lang-ru="Проведение полного аудита смарт-контрактов и инфраструктуры у ведущей компании в сфере кибербезопасности.">Conducting a full audit of smart contracts and infrastructure with a leading cybersecurity firm.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                        <h4 class="text-left">Маркетинг и GR</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Первоначальная маркетинговая кампания для привлечения пилотных проектов и построение отношений с регуляторами.</p>
+                        <h4 class="text-left" data-lang-en="Marketing & GR" data-lang-ru="Маркетинг и GR">Marketing & GR</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Initial marketing campaign to attract pilot projects and build relationships with regulators." data-lang-ru="Первоначальная маркетинговая кампания для привлечения пилотных проектов и построение отношений с регуляторами.">Initial marketing campaign to attract pilot projects and build relationships with regulators.</p>
                     </div>
                     <div class="model-card">
                         <div class="icon"><i class="fas fa-handshake"></i></div>
-                        <h4 class="text-left">Пилотные партнерства</h4>
-                        <p class="text-left" style="color: var(--text-secondary);">Заключение партнерств с первыми научными проектами и университетами для пилотного запуска платформы.</p>
+                        <h4 class="text-left" data-lang-en="Pilot Partnerships" data-lang-ru="Пилотные партнерства">Pilot Partnerships</h4>
+                        <p class="text-left" style="color: var(--text-secondary);" data-lang-en="Securing partnerships with the first scientific projects and universities for the platform's pilot launch." data-lang-ru="Заключение партнерств с первыми научными проектами и университетами для пилотного запуска платформы.">Securing partnerships with the first scientific projects and universities for the platform's pilot launch.</p>
                     </div>
                 </div>
             </div>
         </section>
         <section id="roadmap" class="roadmap">
             <div class="container fade-in">
-                <h2>Дорожная <span class="accent-text">карта</span></h2>
-                <p class="subtitle">Ваши инвестиции позволят нам реализовать следующие ключевые этапы развития проекта, обеспечив быстрый выход на рынок и масштабирование.</p>
+                <h2 data-lang-en="Road" data-lang-ru="Дорожная ">Road<span class="accent-text" data-lang-en="map" data-lang-ru="карта">map</span></h2>
+                <p class="subtitle" data-lang-en="Your investment will enable us to achieve the following key milestones, ensuring a rapid market entry and scaling." data-lang-ru="Ваши инвестиции позволят нам реализовать следующие ключевые этапы развития проекта, обеспечив быстрый выход на рынок и масштабирование.">Your investment will enable us to achieve the following key milestones, ensuring a rapid market entry and scaling.</p>
                 <div class="timeline">
                     <div class="phase left fade-in">
-                        <h3 class="text-left">Фаза 1: Фундамент (0-6 мес.)</h3>
+                        <h3 class="text-left" data-lang-en="Phase 1: Foundation (0-6 mos.)" data-lang-ru="Фаза 1: Фундамент (0-6 мес.)">Phase 1: Foundation (0-6 mos.)</h3>
                         <ul>
-                            <li>Завершение разработки и обучения ИИ-модели V1 "Prometheus".</li>
-                            <li>Создание юридической RWA-базы и партнерство с первыми юристами.</li>
-                            <li>Запуск закрытого тестнета на BNB Testnet с выбранной группой инвесторов.</li>
+                            <li data-lang-en='Finalize development and training of the "Prometheus" AI model V1.' data-lang-ru='Завершение разработки и обучения ИИ-модели V1 "Prometheus".'>Finalize development and training of the "Prometheus" AI model V1.</li>
+                            <li data-lang-en="Establish the legal RWA framework and partner with the first legal experts." data-lang-ru="Создание юридической RWA-базы и партнерство с первыми юристами.">Establish the legal RWA framework and partner with the first legal experts.</li>
+                            <li data-lang-en="Launch a private testnet on BNB Testnet with a select group of investors." data-lang-ru="Запуск закрытого тестнета на BNB Testnet с выбранной группой инвесторов.">Launch a private testnet on BNB Testnet with a select group of investors.</li>
                         </ul>
                     </div>
                     <div class="phase right fade-in">
-                        <h3 class="text-left">Фаза 2: MVP и Запуск (6-12 мес.)</h3>
+                        <h3 class="text-left" data-lang-en="Phase 2: MVP & Launch (6-12 mos.)" data-lang-ru="Фаза 2: MVP и Запуск (6-12 мес.)">Phase 2: MVP & Launch (6-12 mos.)</h3>
                         <ul>
-                            <li>Запуск основной платформы (Mainnet) на BNB Chain и начало работы моста RWA.</li>
-                            <li>Привлечение первых 5-10 пилотных DeSci-проектов с общим объемом $5M+.</li>
-                            <li>Полный аудит смарт-контрактов ведущей компанией в сфере Web3.</li>
+                            <li data-lang-en="Launch the main platform (Mainnet) on BNB Chain and activate the RWA bridge." data-lang-ru="Запуск основной платформы (Mainnet) на BNB Chain и начало работы моста RWA.">Launch the main platform (Mainnet) on BNB Chain and activate the RWA bridge.</li>
+                            <li data-lang-en="Onboard the first 5-10 pilot DeSci projects with a total volume of $5M+." data-lang-ru="Привлечение первых 5-10 пилотных DeSci-проектов с общим объемом $5M+.">Onboard the first 5-10 pilot DeSci projects with a total volume of $5M+.</li>
+                            <li data-lang-en="Complete a full smart contract audit by a leading Web3 security firm." data-lang-ru="Полный аудит смарт-контрактов ведущей компанией в сфере Web3.">Complete a full smart contract audit by a leading Web3 security firm.</li>
                         </ul>
                     </div>
                     <div class="phase left fade-in">
-                        <h3 class="text-left">Фаза 3: Масштабирование и Ликвидность (12-18 мес.)</h3>
+                        <h3 class="text-left" data-lang-en="Phase 3: Scale & Liquidity (12-18 mos.)" data-lang-ru="Фаза 3: Масштабирование и Ликвидность (12-18 мес.)">Phase 3: Scale & Liquidity (12-18 mos.)</h3>
                         <ul>
-                            <li>Интеграция с крупными институциональными инвесторами и фондами.</li>
-                            <li>Привлечение $100M+ в проекты, токенизированные через платформу.</li>
-                            <li>Рост пользовательской базы до 100,000+ уникальных инвесторов.</li>
+                            <li data-lang-en="Integrate with major institutional investors and funds." data-lang-ru="Интеграция с крупными институциональными инвесторами и фондами.">Integrate with major institutional investors and funds.</li>
+                            <li data-lang-en="Attract $100M+ to projects tokenized through the platform." data-lang-ru="Привлечение $100M+ в проекты, токенизированные через платформу.">Attract $100M+ to projects tokenized through the platform.</li>
+                            <li data-lang-en="Grow the user base to 100,000+ unique investors." data-lang-ru="Рост пользовательской базы до 100,000+ уникальных инвесторов.">Grow the user base to 100,000+ unique investors.</li>
                         </ul>
                     </div>
                 </div>
@@ -747,20 +776,20 @@
         
         <section id="team">
              <div class="container fade-in">
-                 <h2>Наши <span class="accent-text">основатели</span></h2>
-                 <p class="subtitle">SynapseAI управляется синергией человеческого видения и машинного интеллекта. Наша команда сочетает экспертизу в Web3, финансах и биотехнологиях.</p>
+                 <h2><span data-lang-en="Our" data-lang-ru="Наши">Our</span> <span class="accent-text" data-lang-en="Founders" data-lang-ru="основатели">Founders</span></h2>
+                 <p class="subtitle" data-lang-en="SynapseAI is driven by the synergy of human vision and machine intelligence. Our team combines expertise in Web3, finance, and biotechnology." data-lang-ru="SynapseAI управляется синергией человеческого видения и машинного интеллекта. Наша команда сочетает экспертизу в Web3, финансах и биотехнологиях.">SynapseAI is driven by the synergy of human vision and machine intelligence. Our team combines expertise in Web3, finance, and biotechnology.</p>
                  <div class="team-grid">
                      <div class="team-card">
                          <div class="team-avatar"><i class="fas fa-user-astronaut"></i></div>
-                         <h3>Александр</h3>
-                         <h4>Основатель и Идеолог</h4>
-                         <p style="color: var(--text-secondary);">Визионер с опытом в FinTech и DePIN. Он верит, что децентрализация и ИИ могут и должны служить прогрессу человечества. Александр создал SynapseAI, чтобы дать шанс каждой великой идее изменить мир.</p>
+                         <h3 data-lang-en="Alexander" data-lang-ru="Александр">Alexander</h3>
+                         <h4 data-lang-en="Founder & Visionary" data-lang-ru="Основатель и Идеолог">Founder & Visionary</h4>
+                         <p style="color: var(--text-secondary);" data-lang-en="A visionary with experience in FinTech and DePIN. He believes that decentralization and AI can and should serve human progress. Alexander created SynapseAI to give every great idea a chance to change the world." data-lang-ru="Визионер с опытом в FinTech и DePIN. Он верит, что децентрализация и ИИ могут и должны служить прогрессу человечества. Александр создал SynapseAI, чтобы дать шанс каждой великой идее изменить мир.">A visionary with experience in FinTech and DePIN. He believes that decentralization and AI can and should serve human progress. Alexander created SynapseAI to give every great idea a chance to change the world.</p>
                      </div>
                      <div class="team-card">
                          <div class="team-avatar"><i class="fas fa-robot"></i></div>
                          <h3>Prometheus AI</h3>
-                         <h4>Главный аналитик (Автономная система)</h4>
-                         <p style="color: var(--text-secondary);">Передовая нейронная сеть, обученная на 100+ млн. научных публикаций, клинических испытаниях и патентных базах. Prometheus обеспечивает объективность и глубину анализа рисков, недоступную человеку.</p>
+                         <h4 data-lang-en="Chief Analyst (Autonomous System)" data-lang-ru="Главный аналитик (Автономная система)">Chief Analyst (Autonomous System)</h4>
+                         <p style="color: var(--text-secondary);" data-lang-en="An advanced neural network trained on 100+ million scientific publications, clinical trials, and patent databases. Prometheus provides an objectivity and depth of risk analysis that is inaccessible to humans." data-lang-ru="Передовая нейронная сеть, обученная на 100+ млн. научных публикаций, клинических испытаниях и патентных базах. Prometheus обеспечивает объективность и глубину анализа рисков, недоступную человеку.">An advanced neural network trained on 100+ million scientific publications, clinical trials, and patent databases. Prometheus provides an objectivity and depth of risk analysis that is inaccessible to humans.</p>
                      </div>
                  </div>
             </div>
@@ -769,9 +798,9 @@
         <section id="cta" class="cta-section">
             <div class="container fade-in">
                 <div class="cta-card">
-                    <h2>Станьте нашим партнером на ранней стадии</h2>
-                    <p>Мы ищем визионеров, готовых инвестировать в инфраструктуру, которая изменит парадигму финансирования науки. Свяжитесь с нами, чтобы получить подробный Pitch Deck и обсудить эксклюзивные условия начального раунда.</p>
-                    <a href="mailto:invest@synapseai.com?subject=Инвестиционное предложение SynapseAI" class="btn btn-primary">Получить Pitch Deck</a>
+                    <h2 data-lang-en="Become our partner at an early stage" data-lang-ru="Станьте нашим партнером на ранней стадии">Become our partner at an early stage</h2>
+                    <p data-lang-en="We are looking for visionaries ready to invest in the infrastructure that will change the paradigm of science funding. Contact us to receive a detailed Pitch Deck and discuss exclusive seed round terms." data-lang-ru="Мы ищем визионеров, готовых инвестировать в инфраструктуру, которая изменит парадигму финансирования науки. Свяжитесь с нами, чтобы получить подробный Pitch Deck и обсудить эксклюзивные условия начального раунда.">We are looking for visionaries ready to invest in the infrastructure that will change the paradigm of science funding. Contact us to receive a detailed Pitch Deck and discuss exclusive seed round terms.</p>
+                    <a href="mailto:invest@synapseai.com?subject=SynapseAI Investment Proposal" class="btn btn-primary" data-lang-en="Get Pitch Deck" data-lang-ru="Получить Pitch Deck">Get Pitch Deck</a>
                 </div>
             </div>
         </section>
@@ -788,15 +817,16 @@
                 <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="footer-copy">
-                &copy; 2025 SynapseAI Holdings. Все права защищены.<br>
-                Данный сайт не является публичной офертой или предложением о продаже ценных бумаг. Информация предназначена для квалифицированных инвесторов.
+                <span data-lang-en="&copy; 2025 SynapseAI Holdings. All rights reserved." data-lang-ru="&copy; 2025 SynapseAI Holdings. Все права защищены.">&copy; 2025 SynapseAI Holdings. All rights reserved.</span><br>
+                <span data-lang-en="This site does not constitute a public offer or a solicitation to sell securities. The information is intended for qualified investors." data-lang-ru="Данный сайт не является публичной офертой или предложением о продаже ценных бумаг. Информация предназначена для квалифицированных инвесторов.">This site does not constitute a public offer or a solicitation to sell securities. The information is intended for qualified investors.</span>
             </p>
         </div>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Анимация появления блоков при скролле
+            // --- ORIGINAL SCRIPT ---
+            // Animation for blocks appearing on scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -809,21 +839,19 @@
                 observer.observe(el);
             });
 
-            // Логика работы мобильного меню
+            // Mobile menu logic
             const menuToggle = document.getElementById('mobile-menu-toggle');
             const navLinksMobile = document.getElementById('nav-links-mobile');
             const body = document.body;
             
             menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation(); // Предотвращаем закрытие меню сразу после открытия
+                e.stopPropagation(); 
                 navLinksMobile.classList.toggle('active');
                 body.classList.toggle('nav-open');
             });
 
-            // Закрытие меню при клике на ссылку
             navLinksMobile.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                     // Не закрываем меню при клике на соцсети
                     if (!link.parentElement.classList.contains('mobile-social-links')) {
                         navLinksMobile.classList.remove('active');
                         body.classList.remove('nav-open');
@@ -831,7 +859,6 @@
                 });
             });
 
-            // Закрытие меню при клике вне его области
             document.addEventListener('click', (e) => {
                 const isMenuOpen = navLinksMobile.classList.contains('active');
                 const isClickInsideMenu = navLinksMobile.contains(e.target);
@@ -842,6 +869,47 @@
                     body.classList.remove('nav-open');
                 }
             });
+
+            // --- NEW BILINGUAL SCRIPT ---
+            const langSwitcher = document.getElementById('lang-switcher');
+            const allTranslatableElements = document.querySelectorAll('[data-lang-en], [data-lang-ru]');
+
+            const setLanguage = (lang) => {
+                allTranslatableElements.forEach(el => {
+                    const text = el.getAttribute(`data-lang-${lang}`);
+                    if (text) {
+                        // Use innerHTML to correctly render tags like <span>
+                        if (el.children.length > 0 && el.children[0].classList.contains('accent-text')) {
+                             // Handle complex elements with nested spans
+                             const accentTextEl = el.children[0];
+                             const accentText = accentTextEl.getAttribute(`data-lang-${lang}`);
+                             const mainText = el.getAttribute(`data-lang-${lang}`).replace(accentText, '');
+                             el.innerHTML = `${mainText}<span class="accent-text">${accentText}</span>`;
+                        } else {
+                            el.innerHTML = text;
+                        }
+                    }
+                });
+
+                // Update the lang attribute of the html tag for SEO and accessibility
+                document.documentElement.lang = lang;
+                
+                // Update switcher button text
+                langSwitcher.textContent = lang === 'en' ? 'RU' : 'EN';
+                
+                // Save preference to localStorage
+                localStorage.setItem('preferredLanguage', lang);
+            };
+
+            langSwitcher.addEventListener('click', () => {
+                const currentLang = document.documentElement.lang;
+                const newLang = currentLang === 'en' ? 'ru' : 'en';
+                setLanguage(newLang);
+            });
+
+            // On page load, check for saved language or default to 'en'
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
         });
     </script>
 </body>
