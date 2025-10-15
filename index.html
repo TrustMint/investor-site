@@ -34,10 +34,11 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        /* ИЗМЕНЕНИЕ: Убирает белую полосу при скролле на мобильных */
+        html { scroll-behavior: smooth; background-color: var(--bg-dark); }
         body {
             font-family: var(--font-main);
-            background-color: var(--bg-dark); /* FIX: Убирает белую полосу */
+            background-color: var(--bg-dark);
             background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
             color: var(--text-primary);
             line-height: 1.7;
@@ -117,7 +118,7 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- ИЗМЕНЕНИЕ: Хедер --- */
+        /* --- Хедер --- */
         .header {
             position: fixed; 
             top: 15px;
@@ -135,21 +136,30 @@
         }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 85px; } 
         
-        /* EDIT: More interesting logo */
+        /* ИЗМЕНЕНИЕ: Улучшенный логотип */
         .logo {
             font-family: var(--font-headings);
             font-size: 26px;
             font-weight: 800;
             text-decoration: none;
-            background: linear-gradient(45deg, #FFFFFF, #BDBDBD);
+            background: linear-gradient(45deg, var(--text-primary), var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            transition: filter 0.3s ease;
+        }
+        .logo:hover {
+            filter: brightness(1.2);
         }
         .logo .fa-atom {
             color: var(--accent-gold);
-            margin-right: 8px;
+            margin-right: 10px;
             -webkit-text-fill-color: var(--accent-gold); /* Restore icon color */
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .logo:hover .fa-atom {
+            transform: rotate(360deg);
         }
         
         .header-buttons {
@@ -181,7 +191,7 @@
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { width: 100%; }
         
-        /* ИЗМЕНЕНИЕ: Мобильное меню */
+        /* Мобильное меню */
         .mobile-menu-toggle {
             display: none;
             z-index: 1002;
@@ -197,7 +207,6 @@
         }
         .mobile-menu-toggle .icon-close { display: none; }
         
-        /* EDIT: Hide mobile socials on desktop */
         .mobile-social-links {
             display: none;
         }
@@ -428,7 +437,6 @@
             body.nav-open .mobile-menu-toggle .icon-close { display: block; }
             .header-buttons .btn-secondary { display: none; }
             
-            /* EDIT: Styles for social links in mobile menu */
             .nav-links .mobile-social-links {
                 display: flex;
                 gap: 30px;
@@ -467,17 +475,19 @@
         @media (max-width: 768px) {
             body { line-height: 1.6; }
             p.subtitle { margin-bottom: 60px; }
+            
+            /* ИЗМЕНЕНИЕ: Кнопка DApp видна и расположена рядом с меню */
             .navbar .header-buttons {
-                display: none; /* Hide all buttons on smaller screens to avoid overlap */
+                /* display: none; <-- Убрано, чтобы кнопка была видна */
             }
             .navbar {
                 justify-content: space-between;
             }
             .navbar .logo {
-                margin-right: auto;
+                margin-right: 0; /* <-- Убрано auto, чтобы layout работал через space-between */
             }
             .mobile-menu-toggle {
-                margin-left: 20px;
+                margin-left: 0; /* <-- Убран лишний отступ */
             }
             .roadmap .timeline::before { display: none; }
             .roadmap .phase { 
@@ -518,9 +528,9 @@
                 <li><a href="#roadmap">Карта</a></li>
                 <li><a href="#team">Команда</a></li>
                 <li class="mobile-social-links">
-                     <a href="#" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
-                     <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                     <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                     <a href="https://x.com/YourUsername" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+                     <a href="https://linkedin.com/company/YourCompany" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                     <a href="https://t.me/YourChannel" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
                      <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </li>
             </ul>
@@ -711,9 +721,9 @@
         <div class="container">
             <div class="footer-logo"><i class="fas fa-atom"></i> SynapseAI</div>
              <div class="social-links">
-                <a href="#" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://x.com/YourUsername" target="_blank" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/company/YourCompany" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://t.me/YourChannel" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
                 <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="footer-copy">
@@ -737,7 +747,6 @@
                 observer.observe(el);
             });
 
-            // ИЗМЕНЕНИЕ: Функционал мобильного меню
             const menuToggle = document.getElementById('mobile-menu-toggle');
             const navLinks = document.getElementById('nav-links');
             const body = document.body;
@@ -749,7 +758,6 @@
 
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    // Do not close menu if a social link is clicked
                     if (!link.parentElement.classList.contains('mobile-social-links')) {
                         navLinks.classList.remove('active');
                         body.classList.remove('nav-open');
