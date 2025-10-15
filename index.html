@@ -34,7 +34,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        /* ИЗМЕНЕНИЕ: Убирает белую полосу при скролле на мобильных */
         html { scroll-behavior: smooth; background-color: var(--bg-dark); }
         body {
             font-family: var(--font-main);
@@ -136,7 +135,6 @@
         }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 85px; } 
         
-        /* ИЗМЕНЕНИЕ: Улучшенный логотип */
         .logo {
             font-family: var(--font-headings);
             font-size: 26px;
@@ -155,7 +153,7 @@
         .logo .fa-atom {
             color: var(--accent-gold);
             margin-right: 10px;
-            -webkit-text-fill-color: var(--accent-gold); /* Restore icon color */
+            -webkit-text-fill-color: var(--accent-gold);
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .logo:hover .fa-atom {
@@ -209,6 +207,13 @@
         
         .mobile-social-links {
             display: none;
+        }
+        
+        /* ИЗМЕНЕНИЕ: Контейнер для кнопок и меню на мобильных */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Расстояние между кнопкой DApp и меню */
         }
 
 
@@ -407,54 +412,77 @@
             .mobile-menu-toggle {
                 display: block;
             }
+            
+            /* ИЗМЕНЕНИЕ: Основная навигация скрыта на десктопе, но не для мобильного меню */
             .nav-links {
-                position: fixed;
-                top: 0;
+                display: none;
+            }
+            
+            /* ИЗМЕНЕНИЕ: Новая технологичная анимация и стиль мобильного меню */
+            .nav-links-mobile {
+                display: flex; /* Используем flex для активного меню */
+                list-style: none;
+                position: absolute;
+                top: 80px; /* Положение под хедером */
                 right: 0;
-                width: 70%;
+                width: 100%;
                 max-width: 320px;
-                height: 100vh;
-                background: var(--bg-dark);
+                background: rgba(13, 18, 27, 0.9);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 40px;
+                align-items: flex-start;
+                gap: 15px; /* Уменьшаем расстояние между пунктами */
+                padding: 25px;
                 z-index: 1001;
-                transform: translateX(100%);
+                transform-origin: top right; /* Анимация из правого верхнего угла */
+                transform: translateY(-10px) scale(0.95);
                 opacity: 0;
                 visibility: hidden;
-                transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.5s;
+                transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease, visibility 0s 0.3s;
             }
-            .nav-links.active {
-                transform: translateX(0);
+            .nav-links-mobile.active {
+                transform: translateY(0) scale(1);
                 opacity: 1;
                 visibility: visible;
+                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease, visibility 0s;
             }
-            .nav-links a {
+            .nav-links-mobile a {
                 font-size: 18px;
+                width: 100%; /* Растягиваем ссылку для удобства нажатия */
+                padding: 10px 0;
             }
+            .nav-links-mobile a::after {
+                bottom: 5px; /* Корректировка подчеркивания */
+            }
+
             body.nav-open .mobile-menu-toggle .icon-menu { display: none; }
             body.nav-open .mobile-menu-toggle .icon-close { display: block; }
+            
+            /* Скрываем кнопку "Стать партнером", оставляем DApp */
             .header-buttons .btn-secondary { display: none; }
             
-            .nav-links .mobile-social-links {
+            .nav-links-mobile .mobile-social-links {
                 display: flex;
                 gap: 30px;
-                position: absolute;
-                bottom: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 20px 0;
-                width: 80%;
-                justify-content: center;
+                position: relative; /* Изменено с absolute */
+                bottom: auto;
+                left: auto;
+                transform: none;
+                padding: 20px 0 0; /* Отступ сверху */
+                margin-top: 15px; /* Отделяем от ссылок */
+                width: 100%;
+                justify-content: flex-start; /* Выравниваем по левому краю */
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
             .mobile-social-links a {
                 font-size: 24px;
-                padding: 0; /* Override nav link padding */
+                padding: 0;
             }
             .mobile-social-links a::after {
-                display: none !important; /* Remove hover underline */
+                display: none !important;
             }
 
             .opportunity-content { grid-template-columns: 1fr; gap: 40px; }
@@ -476,19 +504,6 @@
             body { line-height: 1.6; }
             p.subtitle { margin-bottom: 60px; }
             
-            /* ИЗМЕНЕНИЕ: Кнопка DApp видна и расположена рядом с меню */
-            .navbar .header-buttons {
-                /* display: none; <-- Убрано, чтобы кнопка была видна */
-            }
-            .navbar {
-                justify-content: space-between;
-            }
-            .navbar .logo {
-                margin-right: 0; /* <-- Убрано auto, чтобы layout работал через space-between */
-            }
-            .mobile-menu-toggle {
-                margin-left: 0; /* <-- Убран лишний отступ */
-            }
             .roadmap .timeline::before { display: none; }
             .roadmap .phase { 
                 padding: 25px; 
@@ -522,7 +537,30 @@
         <nav class="navbar container">
             <a href="https://synapseairwa.com" class="logo"><i class="fas fa-atom"></i> SynapseAI</a>
             
-            <ul class="nav-links" id="nav-links">
+            <ul class="nav-links">
+                <li><a href="https://synapseairwa.com/">О нас</a></li>
+                <li><a href="#opportunity">Возможность</a></li>
+                <li><a href="#business-model">Модель</a></li>
+                <li><a href="#roadmap">Карта</a></li>
+                <li><a href="#team">Команда</a></li>
+            </ul>
+
+            <div class="header-controls">
+                <div class="header-buttons">
+                     <a href="#cta" class="btn btn-secondary">Стать партнером</a>
+                     <a href="https://app.synapseairwa.com" target="_blank" class="btn btn-primary">DApp (Demo)</a>
+                </div>
+
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars icon-menu"></i>
+                    <i class="fas fa-times icon-close"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <div class="container">
+             <ul class="nav-links-mobile" id="nav-links-mobile">
+                <li><a href="https://synapseairwa.com/">О нас</a></li>
                 <li><a href="#opportunity">Возможность</a></li>
                 <li><a href="#business-model">Модель</a></li>
                 <li><a href="#roadmap">Карта</a></li>
@@ -534,17 +572,7 @@
                      <a href="mailto:invest@synapseai.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </li>
             </ul>
-            
-            <div class="header-buttons">
-                 <a href="#cta" class="btn btn-secondary">Стать партнером</a>
-                 <a href="https://app.synapseairwa.com" target="_blank" class="btn btn-primary">DApp (Demo)</a>
-            </div>
-
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
-                <i class="fas fa-bars icon-menu"></i>
-                <i class="fas fa-times icon-close"></i>
-            </button>
-        </nav>
+        </div>
     </header>
 
     <main>
@@ -735,6 +763,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Анимация появления блоков при скролле
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -747,31 +776,36 @@
                 observer.observe(el);
             });
 
+            // Логика работы мобильного меню
             const menuToggle = document.getElementById('mobile-menu-toggle');
-            const navLinks = document.getElementById('nav-links');
+            const navLinksMobile = document.getElementById('nav-links-mobile');
             const body = document.body;
             
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Предотвращаем закрытие меню сразу после открытия
+                navLinksMobile.classList.toggle('active');
                 body.classList.toggle('nav-open');
             });
 
-            navLinks.querySelectorAll('a').forEach(link => {
+            // Закрытие меню при клике на ссылку
+            navLinksMobile.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
+                     // Не закрываем меню при клике на соцсети
                     if (!link.parentElement.classList.contains('mobile-social-links')) {
-                        navLinks.classList.remove('active');
+                        navLinksMobile.classList.remove('active');
                         body.classList.remove('nav-open');
                     }
                 });
             });
 
+            // Закрытие меню при клике вне его области
             document.addEventListener('click', (e) => {
-                const isMenuOpen = navLinks.classList.contains('active');
-                const isClickInsideMenu = navLinks.contains(e.target);
+                const isMenuOpen = navLinksMobile.classList.contains('active');
+                const isClickInsideMenu = navLinksMobile.contains(e.target);
                 const isClickOnToggle = menuToggle.contains(e.target);
 
                 if (isMenuOpen && !isClickInsideMenu && !isClickOnToggle) {
-                    navLinks.classList.remove('active');
+                    navLinksMobile.classList.remove('active');
                     body.classList.remove('nav-open');
                 }
             });
