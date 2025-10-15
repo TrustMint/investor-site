@@ -189,7 +189,6 @@
         .nav-links a:hover { color: var(--text-primary); }
         .nav-links a:hover::after { width: 100%; }
         
-        /* ИЗМЕНЕНИЕ: Мобильное меню по умолчанию скрыто */
         .nav-links-mobile {
             display: none;
         }
@@ -427,7 +426,6 @@
                 right: 0;
                 width: 100%;
                 max-width: 320px;
-                /* ИЗМЕНЕНИЕ: Новый цвет и усиленный эффект стекла */
                 background: rgba(10, 15, 30, 0.75);
                 backdrop-filter: blur(25px);
                 -webkit-backdrop-filter: blur(25px);
@@ -450,13 +448,42 @@
                 visibility: visible;
                 transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease, visibility 0s;
             }
+            
+            /* ИЗМЕНЕНИЕ: Добавлена анимация для пунктов меню */
+            .nav-links-mobile li {
+                opacity: 0;
+                transform: translateX(15px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+            .nav-links-mobile.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            /* ИЗМЕНЕНИЕ: Добавлена задержка для последовательного появления */
+            .nav-links-mobile.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links-mobile.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links-mobile.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links-mobile.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-links-mobile.active li:nth-child(5) { transition-delay: 0.3s; }
+            .nav-links-mobile.active li:nth-child(6) { transition-delay: 0.35s; } /* Для соц. иконок */
+
+
             .nav-links-mobile a {
                 font-size: 18px;
+                font-weight: 500;
                 width: 100%;
                 padding: 10px 0;
+                /* ИЗМЕНЕНИЕ: Новый градиентный цвет для текста */
+                background: linear-gradient(90deg, var(--accent-gold), var(--text-primary) 60%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                transition: filter 0.3s ease;
+            }
+            .nav-links-mobile a:hover {
+                filter: brightness(1.2);
             }
             .nav-links-mobile a::after {
-                bottom: 5px;
+                display: none; /* Убираем стандартное подчеркивание */
             }
 
             body.nav-open .mobile-menu-toggle .icon-menu { display: none; }
@@ -480,6 +507,12 @@
             .mobile-social-links a {
                 font-size: 24px;
                 padding: 0;
+                background: none; /* Сбрасываем градиент для иконок */
+                -webkit-text-fill-color: var(--text-secondary); /* Возвращаем цвет иконкам */
+            }
+            .mobile-social-links a:hover {
+                -webkit-text-fill-color: var(--accent-gold); /* Цвет иконок при наведении */
+                 filter: none;
             }
             .mobile-social-links a::after {
                 display: none !important;
@@ -579,7 +612,7 @@
 
         <section id="hero" class="hero">
             <div class="hero-content container fade-in">
-                <h1>Будущее биотеха создается сегодня. Инвестируйте в его код.</h1>
+                <h1>Инвестируйте в алгоритм, который изменит биотехнологии навсегда.</h1>
                 <p>SynapseAI создает платформу для токенизации и ИИ-анализа научных активов. Мы привлекаем начальный раунд финансирования для запуска и масштабирования проекта. Это шанс войти в рынок DeSci на этапе его зарождения.</p>
                 <div class="hero-buttons">
                     <a href="#cta" class="btn btn-primary">Получить Pitch Deck</a>
